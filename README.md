@@ -1,2 +1,2 @@
-# ycastilloktmc
+# Infinity
 Infinity Web interface
