@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,9 @@ namespace Infinity
         GridViewRow gvRow;
         string strRecNo;
         string strComp;
+        string strDispName;
+        int intLevel;
+        DBUtil db;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack)
@@ -24,6 +28,8 @@ namespace Infinity
                     gvRow = (GridViewRow)Session["GridView"];
                     strRecNo = Session["RecNo"].ToString();
                     strComp = Session["Company"].ToString();
+                    strDispName = Session["DisplayName"].ToString();
+                    intLevel = Convert.ToInt32(Session["Level"].ToString());
                 }
                 catch (Exception)
                 {
@@ -66,7 +72,7 @@ namespace Infinity
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "javascript:setMouseOverColor(this);";
-                e.Row.Attributes["onmouseout"] = "javascript:setMouseOutColor(this);";
+                e.Row.Attributes["onmouseout"] = "javascript:setMouseOutColor(this);"; 
                 e.Row.Attributes["onclick"] =
                 ClientScript.GetPostBackClientHyperlink(this.gv, "Select$" + e.Row.RowIndex);
             }
@@ -87,7 +93,6 @@ namespace Infinity
                 //e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + e.Row.RowIndex);
             }
         }
-
         protected void PopulateDataEntry()
         {
             txtIDInfinity.Text = strRecNo;
@@ -109,15 +114,26 @@ namespace Infinity
                     {
                         adp.Fill(dt);
                         DataRow dr = dt.Rows[0];
+                        tdInvalidEnteries.Visible = false;
                         txtDefendant_Company.Text = dr["Defendant_Company"].ToString();
                         txtStatus_of_Case.Text = dr["Status_of_Case_Ex_ADST"].ToString();
                         txtYear_Filed.Text = dr["Year_Filed"].ToString();
                         txtLead_Case_Venue.Text = dr["Lead_Case_Venue"].ToString();
-                        cboType_of_Case.Text = dr["Type_of_Case_10b_11_14e_14a"].ToString();
                         txtLead_Case_No.Text = dr["Lead_Case_No_Example_1100409"].ToString();
                         txtJudge_Assigned_to_Lead_Case.Text = dr["Judge_Assigned_to_Lead_Case"].ToString();
                         txtMagistrate_Judge.Text = dr["Magistrate_Judge"].ToString();
                         txtLead_Counsel_1.Text = dr["Lead_Counsel_1_"].ToString();
+                        try
+                        {
+                            cboType_of_Case.Text = dr["Type_of_Case_10b_11_14e_14a"].ToString();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            cboType_of_Case.BorderColor = Color.Red;
+                            tdInvalidEnteries.Visible = true;
+                            lblInvalidEntries.Visible = true;
+                        }
                     }
                 }
             }
@@ -127,74 +143,60 @@ namespace Infinity
         {
             Session["RecNo"] = "";
             Session["Company"] = "";
-
-            bool SW = true;
-            btnAdd01.Visible = !SW;
-            btnAdd02.Visible = !SW;
-            btnEdit01.Visible = !SW;
-            btnEdit02.Visible = !SW;
-            btnDelete01.Visible = !SW;
-            btnDelete02.Visible = !SW;
-            btnSave01.Visible = SW;
-            btnSave02.Visible = SW;
-            btnCancel01.Visible = SW;
-            btnCancel02.Visible = SW;
-
-            pnlData.Visible = false;
-            pnlMain.Visible = true;
         }
         protected void ButtonEdit(object sender, EventArgs e)
         {
-            bool SW = true;
-            btnAdd01.Visible = !SW;
-            btnAdd02.Visible = !SW;
-            btnEdit01.Visible = !SW;
-            btnEdit02.Visible = !SW;
-            btnDelete01.Visible = !SW;
-            btnDelete02.Visible = !SW;
-            btnSave01.Visible = SW;
-            btnSave02.Visible = SW;
-            btnCancel01.Visible = SW;
-            btnCancel02.Visible = SW;
-
-            pnlData.Visible = false;
-            pnlMain.Visible = true;
-
             txtIDInfinity.Text = strRecNo;
             PopulateDataEntry();
         }
         protected void ButtonDelete(object sender, EventArgs e)
         {
-            bool SW = true;
-            if (btnEdit01.Visible)
-            {
-                btnAdd01.Visible = !SW;
-                btnAdd02.Visible = !SW;
-                btnEdit01.Visible = !SW;
-                btnEdit02.Visible = !SW;
-                btnDelete01.Visible = SW;
-                btnDelete02.Visible = SW;
-                btnSave01.Visible = !SW;
-                btnSave02.Visible = !SW;
-                btnCancel01.Visible = SW;
-                btnCancel02.Visible = SW;
-
-            } else
-            {
-                string message = "Record No: " + strRecNo + "\\nCompany Name: " + strComp + "\nWill be deleted." + "\nAre you sure (Y/N)?";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
-            }
-
-            pnlData.Visible = false;
-            pnlMain.Visible = true;
-
             txtIDInfinity.Text = strRecNo;
             PopulateDataEntry();
+        }
+
+        protected void ButtonDeleteA(object sender, EventArgs e)
+        {
+            string confirmValue = Request.Form["confirm_value"];
+            if (confirmValue == "Yes")
+            {
+                Session["RecNo"] = strRecNo;
+                string message = "Current Record No: " + strRecNo + "\\nWill be deleted. " + strComp;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+                MarkRecordForDelete();
+            }
+            else
+            {
+                // do nothing
+            }
+        }
+
+        protected void MarkRecordForDelete()
+        {
+            DBUtil dbc = new DBUtil();
+            dbc.User = Session["User"].ToString();
+            dbc.RecNo = Convert.ToInt32(txtIDInfinity.Text.ToString());
+            dbc.DeleteRecord();
         }
         protected void ButtonSave(object sender, EventArgs e)
         {
 
         }
+        protected void ButtonVerify(object sender, EventArgs e)
+        {
+            chkVerified.Checked = !chkVerified.Checked;
+            hdnVerified.Value = chkVerified.Checked.ToString();
+            btnVerify01.Text = chkVerified.Checked ?  "Unverify": "Verify";
+            btnVerify02.Text = btnVerify01.Text;
+            lblVerifiedBy.Visible = false;
+            if (chkVerified.Checked)
+            {
+                lblVerifiedBy.Text = "&nbsp;By&nbsp;" + strDispName + "&nbsp;on&nbsp;" + DateTime.Today.ToShortDateString();
+                lblVerifiedBy.Visible = true;
+            }
+
+        }
+
         protected void ButtonCancel(object sender, EventArgs e)
         {
 

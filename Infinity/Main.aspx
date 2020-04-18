@@ -28,7 +28,7 @@
 
         function setMouseOverColor(element) {
             oldgridSelectedColor = element.style.backgroundColor;
-            element.style.backgroundColor = 'yellow';
+            element.style.backgroundColor = 'skyblue';
             element.style.cursor = 'hand';
             element.style.textDecoration = 'underline';
         }
@@ -37,6 +37,26 @@
             element.style.backgroundColor = oldgridSelectedColor;
             element.style.textDecoration = 'none';
         }
+
+        function Confirm() {
+            var ctl = document.getElementById("ContentPlaceHolder1_btnEdit01");
+            try {
+                if (ctl.visible) { return; }
+            } catch (e) {
+
+            }
+            
+          var confirm_value = document.createElement("INPUT");
+          confirm_value.type = "hidden";
+          confirm_value.name = "confirm_value";
+          if (confirm("Are you sure you want to delete this record?")) {
+              confirm_value.value = "Yes";
+          } else {
+              confirm_value.value = "No";
+          }
+          document.forms[0].appendChild(confirm_value);
+        }
+
         function checkRadioBtn(id) {
             var gv = document.getElementById('<%=gv.ClientID %>');
             var hd = document.getElementById('<%=hdnRecNo.ClientID %>');
@@ -57,14 +77,95 @@
             }
             return recno;
         }
+
+        var btnAdd01 = document.getElementById('<%=btnAdd01.ClientID %>')
+        var btnAdd02 = document.getElementById('<%=btnAdd02.ClientID %>')
+        var btnEdit01 = document.getElementById('<%=btnEdit01.ClientID %>')
+        var btnEdit02 = document.getElementById('<%=btnEdit02.ClientID %>')
+        var btnDelete01 = document.getElementById('<%=btnDelete01.ClientID %>')
+        var btnDelete02 = document.getElementById('<%=btnDelete02.ClientID %>')
+        var btnDelete01A = document.getElementById('<%=btnDelete01A.ClientID %>')
+        var btnDelete02A = document.getElementById('<%=btnDelete02A.ClientID %>')
+        var btnSave01 = document.getElementById('<%=btnSave01.ClientID %>')
+        var btnSave02 = document.getElementById('<%=btnSave02.ClientID %>')
+        var btnVerify01 = document.getElementById('<%=btnVerify01.ClientID %>')
+        var btnVerify02 = document.getElementById('<%=btnVerify02.ClientID %>')
+        var btnCancel01 = document.getElementById('<%=btnCancel01.ClientID %>')
+        var btnCancel02 = document.getElementById('<%=btnCancel02.ClientID %>')
+        var pnlData = document.getElementById('<%=pnlData.ClientID %>')
+        var pnlButtons01 = document.getElementById('<%=pnlButtons01.ClientID %>')
+        var pnlButtons02 = document.getElementById('<%=pnlButtons02.ClientID %>')
+        var pnlMain = document.getElementById('<%=pnlMain.ClientID %>')
+        var SW = true;
+
+        function ButtonsAdd() {
+            btnAdd01.visible = !SW;
+            btnAdd02.visible = !SW;
+            btnEdit01.visible = !SW;
+            btnEdit02.visible = !SW;
+            btnDelete01.visible = !SW;
+            btnDelete02.visible = !SW;
+            btnDelete01A.visible = !SW;
+            btnDelete02A.visible = !SW;
+            btnSave01.visible = SW;
+            btnSave02.visible = SW;
+            btnVerify01.visible = !SW;
+            btnVerify02.visible = !SW;
+            btnCancel01.visible = SW;
+            btnCancel02.visible = SW;
+            pnlData.visible = !SW;
+            pnlMain.visible = SW;
+        }
+
+        function ButtonsEdit() {
+            btnAdd01.visible = !SW;
+            btnAdd02.visible = !SW;
+            btnEdit01.visible = !SW;
+            btnEdit02.visible = !SW;
+            btnDelete01.visible = !SW;
+            btnDelete02.visible = !SW;
+            btnDelete01A.visible = !SW;
+            btnDelete02A.visible = !SW;
+            btnSave01.visible = SW;
+            btnSave02.visible = SW;
+            btnVerify01.visible = SW;
+            btnVerify02.visible = SW;
+            btnCancel01.visible = SW;
+            btnCancel02.visible = SW;
+            pnlData.visible = !SW;
+            pnlMain.visible = SW;
+        }
+
+        function ButtonsDelete() {
+            btnAdd01.visible = !SW;
+            btnAdd02.visible = !SW;
+            btnEdit01.visible = !SW;
+            btnEdit02.visible = !SW;
+            btnDelete01.visible = !SW;
+            btnDelete02.visible = !SW;
+            btnDelete01A.visible = SW;
+            btnDelete02A.visible = SW;
+            btnSave01.visible = !SW;
+            btnSave02.visible = !SW;
+            btnVerify01.visible = !SW;
+            btnVerify02.visible = !SW;
+            btnCancel01.visible = SW;
+            btnCancel02.visible = SW;
+            pnlData.visible = !SW;
+            pnlMain.visible = SW;
+        }
+
     </script>
-    <asp:Panel ID="pnlButtons1" runat="server" Visible="true">
-        <asp:Button ID="btnAdd01" runat="server" Text="Add/Create" OnClick="ButtonAdd" Visible="true" />&nbsp;
-        <asp:Button ID="btnEdit01" runat="server" Text="Edit" OnClick="ButtonEdit" Visible="false" />&nbsp;
-        <asp:Button ID="btnDelete01" runat="server" Text="Delete" OnClick="ButtonDelete" Visible="false" />&nbsp;
+    <asp:Panel ID="pnlButtons01" runat="server" Visible="true">
+        <asp:Button ID="btnAdd01" runat="server" Text="Add/Create" OnClientClick="ButtonsAdd()" OnClick="ButtonAdd" Visible="true" />&nbsp;
+        <asp:Button ID="btnEdit01" runat="server" Text="Edit" OnClientClick="ButtonsEdit()" OnClick="ButtonEdit" Visible="false" />&nbsp;
+        <asp:Button ID="btnDelete01" runat="server" Text="Delete" OnClientClick="ButtonsDelete" OnClick="ButtonDelete" Visible="false" />&nbsp;
+        <asp:Button ID="btnDelete01A" runat="server" Text="Delete" OnClientClick="Confirm()" OnClick="ButtonDeleteA" Visible="false" />&nbsp;
         <asp:Button ID="btnSave01" runat="server" Text="Save" OnClick="ButtonSave" Visible="false" />&nbsp;
+        <asp:Button ID="btnVerify01" runat="server" Text="Verify" OnClick="ButtonVerify" Visible="false" />&nbsp;
         <asp:Button ID="btnCancel01" runat="server" Text="Cancel" OnClick="ButtonCancel" Visible="false" />&nbsp;
         <asp:HiddenField ID="hdnRecNo" runat="server" Value="Temp" />
+        <asp:HiddenField ID="hdnVerified" runat="server" Value="false" />
         <br />
         &nbsp;<br />
     </asp:Panel>
@@ -119,6 +220,15 @@
                 <asp:TableCell>
                     <asp:TextBox ID="txtIDInfinity" runat="server"></asp:TextBox>
                 </asp:TableCell>
+                <asp:TableCell>
+                    <asp:CheckBox ID="chkVerified" runat="server" Text="Verified&nbsp;&nbsp;" Enabled="false" />
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="lblVerifiedBy" runat="server" Text="Verified by no one" Visible="false"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell ID="tdInvalidEnteries" ForeColor="Red" BorderColor="Red" Visible="false">
+                    <asp:Label ID="lblInvalidEntries" runat="server" Text="&nbsp;Invalid&nbsp;Entries&nbsp;" BorderColor="red" BorderStyle="Solid" BorderWidth="2px" Visible="false"></asp:Label>
+                </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>&nbsp;</asp:TableCell>
@@ -168,7 +278,7 @@
                     <asp:Label ID="Label8" runat="server" Text="Type&nbsp;of&nbsp;Case&nbsp;"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:DropDownList ID="cboType_of_Case" runat="server" AutoPostBack="true"
+                    <asp:DropDownList ID="cboType_of_Case" runat="server" AutoPostBack="true" AppendDataBoundItems="true" 
                         OnSelectedIndexChanged="cboType_of_Case_SelectedIndexChanged">
                         <asp:ListItem Selected="True">&nbsp;</asp:ListItem>
                         <asp:ListItem>10b</asp:ListItem>
@@ -675,13 +785,14 @@
             </asp:TableRow>
         </asp:Table>
     </asp:Panel>
-
     <asp:Panel ID="pnlButtons02" runat="server" Visible="true">
         <br />
-        <asp:Button ID="btnAdd02" runat="server" Text="Add/Create" OnClick="ButtonAdd" Visible="true" />&nbsp;
-        <asp:Button ID="btnEdit02" runat="server" Text="Edit" OnClick="ButtonEdit" Visible="false" />&nbsp;
-        <asp:Button ID="btnDelete02" runat="server" Text="Delete" OnClick="ButtonDelete" Visible="false" />&nbsp;
+        <asp:Button ID="btnAdd02" runat="server" Text="Add/Create" OnClientClick="ButtonsAdd()" OnClick="ButtonAdd" Visible="true" />&nbsp;
+        <asp:Button ID="btnEdit02" runat="server" Text="Edit" OnClientClick="ButtonsEdit()" OnClick="ButtonEdit" Visible="false" />&nbsp;
+        <asp:Button ID="btnDelete02" runat="server" Text="Delete" OnClientClick="ButtonsDelete" OnClick="ButtonDelete" Visible="false" />&nbsp;
+        <asp:Button ID="btnDelete02A" runat="server" Text="Delete" OnClientClick="Confirm()" OnClick="ButtonDeleteA" Visible="false" />&nbsp;        
         <asp:Button ID="btnSave02" runat="server" Text="Save" OnClick="ButtonSave" Visible="false" />&nbsp;
+        <asp:Button ID="btnVerify02" runat="server" Text="Verify" OnClick="ButtonVerify" Visible="false" />&nbsp;
         <asp:Button ID="btnCancel02" runat="server" Text="Cancel" OnClick="ButtonCancel" Visible="false" />&nbsp;
     </asp:Panel>
 </asp:Content>

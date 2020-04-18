@@ -13,13 +13,13 @@ namespace Infinity {
     public partial class Main {
         
         /// <summary>
-        /// pnlButtons1 control.
+        /// pnlButtons01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlButtons1;
+        protected global::System.Web.UI.WebControls.Panel pnlButtons01;
         
         /// <summary>
         /// btnAdd01 control.
@@ -49,6 +49,15 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Button btnDelete01;
         
         /// <summary>
+        /// btnDelete01A control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete01A;
+        
+        /// <summary>
         /// btnSave01 control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave01;
+        
+        /// <summary>
+        /// btnVerify01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerify01;
         
         /// <summary>
         /// btnCancel01 control.
@@ -74,6 +92,15 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnRecNo;
+        
+        /// <summary>
+        /// hdnVerified control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVerified;
         
         /// <summary>
         /// pnlData control.
@@ -137,6 +164,42 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIDInfinity;
+        
+        /// <summary>
+        /// chkVerified control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkVerified;
+        
+        /// <summary>
+        /// lblVerifiedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVerifiedBy;
+        
+        /// <summary>
+        /// tdInvalidEnteries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell tdInvalidEnteries;
+        
+        /// <summary>
+        /// lblInvalidEntries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInvalidEntries;
         
         /// <summary>
         /// Label2 control.
@@ -1516,6 +1579,15 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Button btnDelete02;
         
         /// <summary>
+        /// btnDelete02A control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete02A;
+        
+        /// <summary>
         /// btnSave02 control.
         /// </summary>
         /// <remarks>
@@ -1523,6 +1595,15 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave02;
+        
+        /// <summary>
+        /// btnVerify02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerify02;
         
         /// <summary>
         /// btnCancel02 control.

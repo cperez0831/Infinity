@@ -19,7 +19,7 @@ namespace Infinity
     
     public partial class Login : System.Web.UI.Page
     {
-        string srvr = "ldap://ktmc.com";
+        string srvr = ConfigurationManager.ConnectionStrings["ADConnectionString"].ConnectionString;
         string usr;
         string pwd; 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,12 +32,20 @@ namespace Infinity
         protected void LoginButton_Click(object sender, EventArgs e)
         {
             //Response.Redirect("Main.aspx");
-            //AuthenticateUser();
+            string message = "";
             if (!ValidateUser())
             {
-                string message = "User " + usr + " not allowed." + "\\nPlease check with your administrator. ";
+                message = "User " + usr + " not allowed." + "\\nPlease check with your administrator. ";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
-            } else
+                return;
+            } 
+
+            if (!AuthenticateUser())
+            {
+                message = "Invalid username or password." + "\\nPlease enter correct useername and password. ";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+            }
+            else
             {
                 Response.Redirect("main.aspx");
             }
@@ -66,6 +74,7 @@ namespace Infinity
 
         private bool ValidateUser()
         {
+            usr = UserNameTextBox.Text.ToString();
             Session["User"] = usr;
             Session["DisplayName"] = "";
             Session["Level"] = 0;

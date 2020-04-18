@@ -17,6 +17,7 @@ namespace Infinity
 {
     public partial class Site1 : MasterPage
     {
+        string strDispName;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -37,7 +38,16 @@ namespace Infinity
             //}
 
             string s = System.Web.HttpContext.Current.User.Identity.Name;
+            try
+            {
+                strDispName = Session["DisplayName"].ToString();
+                Label ctl = (Label)this.FindControl("WelcomeLabel");
+                ctl.Text = "Welcome, " + strDispName;
+            }
+            catch (Exception)
+            {
 
+            }
         }
 
         protected void LogoutButton_Click(object sender, EventArgs e)
