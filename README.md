@@ -1,2 +1,0 @@
-# Infinity
-Infinity Web interface
