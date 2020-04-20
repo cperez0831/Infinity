@@ -2,6 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>Infinity Application.</h3>
+    <h3>Infinity Application</h3>
     <p>File Maintenance application for Infinity.</p>
 </asp:Content>
