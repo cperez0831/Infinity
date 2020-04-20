@@ -13,6 +13,24 @@ namespace Infinity {
     public partial class Main {
         
         /// <summary>
+        /// hdnRecNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRecNo;
+        
+        /// <summary>
+        /// hdnVerified control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVerified;
+        
+        /// <summary>
         /// pnlButtons01 control.
         /// </summary>
         /// <remarks>
@@ -85,24 +103,6 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Button btnCancel01;
         
         /// <summary>
-        /// hdnRecNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnRecNo;
-        
-        /// <summary>
-        /// hdnVerified control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnVerified;
-        
-        /// <summary>
         /// pnlData control.
         /// </summary>
         /// <remarks>
@@ -148,13 +148,13 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
-        /// Label1 control.
+        /// lblRecNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblRecNo;
         
         /// <summary>
         /// txtIDInfinity control.

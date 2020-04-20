@@ -37,16 +37,19 @@ namespace Infinity
 
             //}
 
-            string s = System.Web.HttpContext.Current.User.Identity.Name;
-            try
+            if (!IsPostBack)
             {
-                strDispName = Session["DisplayName"].ToString();
-                Label ctl = (Label)this.FindControl("WelcomeLabel");
-                ctl.Text = "Welcome, " + strDispName;
-            }
-            catch (Exception)
-            {
+                string s = System.Web.HttpContext.Current.User.Identity.Name;
+                try
+                {
+                    strDispName = Session["DisplayName"].ToString();
+                    Label ctl = (Label)this.FindControl("WelcomeLabel");
+                    ctl.Text = "Welcome, " + strDispName;
+                }
+                catch (Exception)
+                {
 
+                }
             }
         }
 

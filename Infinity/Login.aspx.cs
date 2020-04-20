@@ -89,10 +89,22 @@ namespace Infinity
 
             string cstr = ConfigurationManager.ConnectionStrings["InfinityDevConnectionString"].ConnectionString;
             SqlConnection conn = new SqlConnection(cstr);
-            do
+            try
             {
-                if (conn.State!=ConnectionState.Open) { conn.Open(); } else { break; }
-            } while (true);
+                do
+                {
+                    if (conn.State != ConnectionState.Open) { conn.Open(); } else { break; }
+                } while (true);
+            }
+            catch (Exception)
+            {
+                string message = "SQL Server connection lost.\\nProgram will continue. ";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+                Session["DisplayName"] = "Unknown Employee";
+                Session["Level"] = "5";
+                return true;
+            }
+            
             cmd.Connection = conn;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "ValidateUser";

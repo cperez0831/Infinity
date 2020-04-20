@@ -19,9 +19,13 @@ namespace Infinity
         public string SolutionName { get; set; }
         public string FileName { get; set; }
         public string Stack { get; set; }
-        public int RecNo { get; set; }
+        public Int32 RecNo { get; set; }
         public string User { get; set; }
         private string StoredProcName { get; set; }
+        public Int32 NextRecordNo { get; set; }
+        public string FieldName { get; set; }
+
+        public string FieldValue { get; set; }
         public DBUtil()
         {
             cstr = ConfigurationManager.ConnectionStrings["InfinityDevConnectionString"].ConnectionString;
@@ -30,7 +34,7 @@ namespace Infinity
 
         private void OpenConn()
         {
-            if (conn == null) { conn = new SqlConnection(cstr)};
+            if (conn == null) { conn = new SqlConnection(cstr); }
             do
             {
                 if (conn.State != ConnectionState.Open) { conn.Open(); } else { break; }
@@ -96,6 +100,96 @@ namespace Infinity
         {
             StoredProcName = "VerifyRecord";
             ExecRecord();
+        }
+
+        public void GetNextRecNo()
+        {
+            OpenConn();
+           
+            using (SqlCommand cmd = new SqlCommand("GetNextInfinityRecNo", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter prm = new SqlParameter("@RecNo", null);
+                prm.Direction = ParameterDirection.Output;
+                prm.SqlDbType = SqlDbType.BigInt;
+                cmd.Parameters.Add(prm);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    NextRecordNo = Convert.ToInt32(prm.Value.ToString());
+                }
+                catch (Exception ex)
+                {
+                    NextRecordNo = -1;
+                }
+            }  
+            
+        }
+
+        public bool CancelThisRecord()
+        {
+            OpenConn();
+            using (SqlCommand cmd = new SqlCommand("CancelRecord", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter prm = new SqlParameter("@RecNo", Convert.ToInt32(RecNo));
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.BigInt;
+                cmd.Parameters.Add(prm);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            
+        }
+
+        public bool UpdateRecord()
+        {
+            OpenConn();
+            using (SqlCommand cmd = new SqlCommand("UpdateRecord", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter prm = new SqlParameter("@RecNo", Convert.ToInt32(RecNo));
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.BigInt;
+                cmd.Parameters.Add(prm);
+
+                prm = new SqlParameter("@User", User);
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.VarChar;
+                prm.Size = 50;
+                cmd.Parameters.Add(prm);
+                
+                prm = new SqlParameter("@FieldName", FieldName);
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.VarChar;
+                prm.Size = 100;
+                cmd.Parameters.Add(prm);
+
+                prm = new SqlParameter("@FieldValue", FieldValue);
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.VarChar;
+                prm.Size = 100;
+                cmd.Parameters.Add(prm);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
 
     }
