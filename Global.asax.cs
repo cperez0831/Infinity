@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace Infinity
 {
@@ -13,9 +14,19 @@ namespace Infinity
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            try
+            {
+                // Code that runs on application startup
+                RouteConfig.RegisterRoutes(RouteTable.Routes);
+                BundleConfig.RegisterBundles(BundleTable.Bundles);
+            }
+            catch (Exception ex)
+            {
+                string message = "An error has occured in the application." + "\\nPlease check with your administrator for details.";
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+                throw;
+            }
+            
         }
     }
 }

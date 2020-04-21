@@ -24,8 +24,11 @@ namespace Infinity
         private string StoredProcName { get; set; }
         public Int32 NextRecordNo { get; set; }
         public string FieldName { get; set; }
-
         public string FieldValue { get; set; }
+        public DataTable DataTableObject { get; set; }
+        public string DataTableName { get; set; }
+
+
         public DBUtil()
         {
             cstr = ConfigurationManager.ConnectionStrings["InfinityDevConnectionString"].ConnectionString;
@@ -40,6 +43,7 @@ namespace Infinity
                 if (conn.State != ConnectionState.Open) { conn.Open(); } else { break; }
             } while (true);
         }
+
         public void LogError()
         {
             OpenConn();
@@ -72,7 +76,7 @@ namespace Infinity
         private void ExecRecord()
         {
             OpenConn();
-            using (SqlCommand cmd = new SqlCommand("GetInfinityData", conn))
+            using (SqlCommand cmd = new SqlCommand(StoredProcName, conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = StoredProcName;
@@ -90,6 +94,7 @@ namespace Infinity
                 cmd.ExecuteNonQuery();
             }
         }
+
         public void DeleteRecord()
         {
             StoredProcName = "MarkRecordForDeletion";
@@ -190,6 +195,38 @@ namespace Infinity
                     return false;
                 }
             }
+        }
+
+        public bool SaveDataTable()
+        {
+            OpenConn();
+            using (SqlCommand cmd = new SqlCommand("DummyProcedure", conn))
+            {
+                cmd.CommandText = "SaveFromDatatable";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                prm = new SqlParameter("@RecNo", Convert.ToInt32(RecNo));
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.BigInt;
+                cmd.Parameters.Add(prm);
+
+                prm = new SqlParameter("@DataTable", DataTableObject);
+                prm.Direction = ParameterDirection.Input;
+                prm.SqlDbType = SqlDbType.Structured;
+                cmd.Parameters.Add(prm);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
     }

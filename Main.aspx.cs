@@ -72,6 +72,7 @@ namespace Infinity
             txtIDInfinity.Text = strRecNo;
             PopulateDataEntry();
         }
+
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvRow = gv.SelectedRow;
@@ -84,6 +85,7 @@ namespace Infinity
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
             SelectRow();
         }
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //check the item being bound is actually a DataRow, if it is, 
@@ -96,11 +98,13 @@ namespace Infinity
                 ClientScript.GetPostBackClientHyperlink(this.gv, "Select$" + e.Row.RowIndex);
             }
         }
+
         protected void GridView1_SelectedIndexChanged_old(object sender, EventArgs e)
         {
             GridViewRow gvRow = gv.SelectedRow;
             string strRecNo = gv.Columns[0].ToString();
         }
+
         protected void GridView1_RowDataBound_old(object sender, GridViewRowEventArgs e)
         {
             //check the item being bound is actually a DataRow, if it is, 
@@ -112,6 +116,7 @@ namespace Infinity
                 //e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.GridView1, "Select$" + e.Row.RowIndex);
             }
         }
+
         protected void PopulateDataEntry()
         {
             txtIDInfinity.Text = strRecNo;
@@ -157,9 +162,6 @@ namespace Infinity
             }
 
         }
-
-        
-
         
         protected void MirrorButtons()
         {
@@ -169,6 +171,7 @@ namespace Infinity
             btnVerify02.Visible = btnVerify01.Visible;
             btnCancel02.Visible = btnCancel01.Visible;
         }
+
         protected void ButtonAdd(object sender, EventArgs e)
         {
             
@@ -223,10 +226,76 @@ namespace Infinity
             dbc.DeleteRecord();
             RefreshPage();
         }
+
         protected void ButtonSave(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable("InfinityDataTable");
+            string[] ColumnNamesString = new string[] {"Defendant_Company", "Status_of_Case_Ex_ADST", "Year_Filed", 
+                "Lead_Case_Venue", "Type_of_Case_10b_11_14e_14a", "Lead_Case_No_Example_1100409", "First_Jurisdiction_Filed_and_Number", "KTMC_Marketing_PlanDesignation",
+                "Second_Jurisdiction_Filed_and_Number", "Third_Jurisdiction_Filed_and_Number", "Fourth_Jurisdiction_Filed_and_Number",
+                "Lead_Plaintiff_Deadline", "Lead_Plaintiff_Movant1_Type_InsitutionalIndividualMixed", "Appointed_Lead_Plaintiff",
+                "Appointed_Lead_Plaintiff_Type_EX_Individual_Institution_Group_of", "Largest_Loss_Appointed_YesNo", "Judge_that_Appointed_LP", "Judge_Assigned_to_Lead_Case",
+                "Magistrate_Judge", "Lead_Counsel_1_", "Lead_Counsel_2", "Lead_Counsel_3", "Lead_Counsel_4", "Appointed_Local_Liaison_Counsel", "Appointed_Additional_Counsel",
+                "Corporate_Defense_Counsel_1_", "Attorney_for_Corporate_Defense_Counsel_1", "Corporate_Defense_Counsel_2", "Attorney_for_Corporate_Defense_Counsel_2",
+                "Corporate_Defense_Counsel_3", "Attorney_for_Corporate_Defense_Counsel_3", "Corporate_Defense_Counsel_4", "KTMC_Internal_Case_No", "Initial_Damage_Estimate_from_60day_list",
+                "LP__of_Estimated_Class_Loss_LPs_loss_from_landscape_divided_by_t", "The_1st_MTD_Result", "The_1st_MTD_Judge",
+                "The_2nd_MTD_Result", "The_2nd_MTD_Judge", "The_3rd_MTD_Result", "The_3rd_MTD_Judge", "Class_Cert_Result",
+                "Class_Cert_Judge", "Certified_Class_Period", "Is_Certified_Class_Period_Same_as_Original_Class_Period_YN", "Settlement_Type_cash_stock_mixed",
+                "Settlement_Stage_Examples_Motion_to_dismiss_summary_judgment_cla", "Settling_Lead_Plaintiffs", "Settlement_Amount",
+                "Settlement_Attorneys_Fees_", "Requested_Attorneys__Fee_Percentage", "Attorneys_Fee_Percentage_Awarded_", "Fee_Lodestar", "Settling_Parties_Company_Individual_Auditor_Underwriter",
+                "Settlement_Judge", "Mediator", "Defendant_Insurer", "Certified_Class_Representative1", "Certified_Class_Representative2",
+                "Certified_Class_Representative3", "Certified_Class_Representative4", "Certified_Class_Representative5", "Defendant_Underwriter"};
 
-        }
+            string[] ColumnNamesDate = new string[] { "First_Filed_Date", "Termination_Date", "First_Press_Release_Date", "LP_Appointment_Date", "Date_of_Order_on_1st_MTD",
+                "Date_of_Order_on_2nd_MTD", "Date_of_Order_on_3rd_MTD", "Date_of_Class_Cert_Decision", "Stipulation_of_Settlement_Filed_Date", "Settlement_Hearing_Date",
+                "Final_Settlement_Date", "Date_KTMC_paid"};
+            
+            for (int i = 0; i < ColumnNamesString.Length; i++)
+            {
+                DataColumn dc =  dt.Columns.Add(ColumnNamesString[i]);
+                dc.DataType = typeof(String);
+            }
+
+            for (int i = 0; i < ColumnNamesDate.Length; i++)
+            {
+                DataColumn dc = dt.Columns.Add(ColumnNamesDate[i]);
+                dc.DataType = typeof(DateTime);
+            }
+
+            dt.Rows.Add(txtDefendant_Company.Text.ToString(), txtStatus_of_Case.Text.ToString(), txtYear_Filed.Text.ToString()=="" ? 1900 :Convert.ToInt16(txtYear_Filed.Text.ToString()),
+                txtLead_Case_Venue.Text.ToString(), cboType_of_Case.Text.ToString(), txtLead_Case_No.Text.ToString(), txtFirst_Jurisdiction_Filed.Text.ToString()+ " - " + txtFirst_Jurisdiction_No.Text.ToString(), txtKTMC_Marketing_PlanDesignation.Text.ToString(),
+                txtSecond_Jurisdiction_Filed.Text.ToString()+ " - " + txtSecond_Jurisdiction_No.Text.ToString(), txtThird_Jurisdiction_Filed.Text.ToString()+ " - " + txtThird_Jurisdiction_No.Text.ToString(), txtFourth_Jurisdiction_Filed.Text.ToString() + " - " + txtFourth_Jurisdiction_No.Text.ToString(),
+                txtLead_Plaintiff_Deadline.Text.ToString(), cboLead_Plaintiff_Movant1_Type.Text.ToString(), txtAppointed_Lead_Plaintiff.Text.ToString(),
+                cboAppointed_Lead_Plaintiff_Type.Text.ToString(), cboLargest_Loss_Appointed.Text.ToString(), txtJudge_that_Appointed_LP.Text.ToString(), txtJudge_Assigned_to_Lead_Case.Text.ToString(),
+                txtMagistrate_Judge.Text.ToString(), txtLead_Counsel_1.Text.ToString(), txtLead_Counsel_2.Text.ToString(), txtLead_Counsel_3.Text.ToString(), txtLead_Counsel_4.Text.ToString(), txtAppointed_Local_Liaison_Counsel.Text.ToString(), txtAppointed_Additional_Counsel.Text.ToString(),
+                txtCorporate_Defense_Counsel_1.Text.ToString(), txtCorporate_Defense_Counsel_2.Text.ToString(), txtAttorney_for_Corporate_Defense_Counsel_2.Text.ToString(),
+                txtCorporate_Defense_Counsel_3.Text.ToString(), txtAttorney_for_Corporate_Defense_Counsel_3.Text.ToString(), txtCorporate_Defense_Counsel_4.Text.ToString(), txtAttorney_for_Corporate_Defense_Counsel_4.Text.ToString(), txtKTMC_Internal_Case_No.Text.ToString(), txtInitial_Damage_Estimate_from_60day_list.Text.ToString(),
+                txtLP__of_Estimated_Class_Loss_LPs_loss_from_landscape_divided_by_t.Text.ToString(), txtThe_1st_MTD_Result.Text.ToString(), txtThe_1st_MTD_Judge.Text.ToString(),
+                txtThe_2nd_MTD_Result.Text.ToString(), txtThe_2nd_MTD_Judge.Text.ToString(), txtThe_3rd_MTD_Result.Text.ToString(), txtThe_3rd_MTD_Judge.Text.ToString(), txtClass_Cert_Result.Text.ToString(),
+                txtClass_Cert_Judge.Text.ToString(), txtCertified_Class_Period.Text.ToString(), cboCertClassPeriodYN.Text.ToString(), cboSettlementType.Text.ToString(),
+                cboSettlement_Stage_Examples.Text.ToString(), txtSettling_Lead_Plaintiffs.Text.ToString(), txtSettlement_Amount.Text.ToString(),
+                txtSettlement_Attorneys_Fees.Text.ToString(), txtRequested_Attorneys__Fee_Percentage.Text.ToString(), txtAttorneys_Fee_Percentage_Awarded.Text.ToString(), txtFee_Lodestar.Text.ToString(), cboSettling_Parties.Text.ToString(),
+                txtSettlement_Judge.Text.ToString(), txtMediator.Text.ToString(), txtDefendant_Insurer.Text.ToString(), txtCertified_Class_Representative1.Text.ToString(), txtCertified_Class_Representative2.Text.ToString(),
+                txtCertified_Class_Representative3.Text.ToString(), txtCertified_Class_Representative4.Text.ToString(), txtCertified_Class_Representative5.Text.ToString(), txtDefendant_Underwriter.Text.ToString(),
+                txtFirst_Filed_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtFirst_Filed_Date.Text.ToString()), 
+                txtTermination_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtTermination_Date.Text.ToString()), 
+                txtFirst_Press_Release_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtFirst_Press_Release_Date.Text.ToString()),
+                txtLP_Appointment_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtLP_Appointment_Date.Text.ToString()), 
+                txtDate_of_Order_on_1st_MTD.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtDate_of_Order_on_1st_MTD.Text.ToString()),
+                txtDate_of_Order_on_2nd_MTD.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtDate_of_Order_on_2nd_MTD.Text.ToString()), 
+                txtDate_of_Order_on_3rd_MTD.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtDate_of_Order_on_3rd_MTD.Text.ToString()), 
+                txtDate_of_Class_Cert_Decision.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtDate_of_Class_Cert_Decision.Text.ToString()),
+                txtStipulation_of_Settlement_Filed_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtStipulation_of_Settlement_Filed_Date.Text.ToString()), 
+                txtSettlement_Hearing_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtSettlement_Hearing_Date.Text.ToString()),
+                txtFinal_Settlement_Date.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtFinal_Settlement_Date.Text.ToString()), 
+                txtDate_KTMC_paid.Text.ToString() == "" ? Convert.ToDateTime("#1900-01-01#") : Convert.ToDateTime(txtDate_KTMC_paid.Text.ToString()));
+            
+            db.RecNo = Convert.ToInt32(txtIDInfinity.Text.ToString());
+            db.DataTableName = dt.TableName;
+            db.DataTableObject = dt;
+            bool SW = db.SaveDataTable();
+        }  
+
         protected void ButtonVerify(object sender, EventArgs e)
         {
             chkVerified.Checked = !chkVerified.Checked;
@@ -246,6 +315,7 @@ namespace Infinity
         {
             Response.Redirect(Request.RawUrl);
         }
+
         protected void ButtonCancel(object sender, EventArgs e)
         {
             db = new DBUtil();
@@ -296,66 +366,42 @@ namespace Infinity
 
         protected void txtDefendant_Company_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+            
         }
 
         protected void txtStatus_of_Case_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+            
         }
 
         protected void txtYear_Filed_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+            
         }
 
         protected void txtFirst_Filed_Date_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+           
         }
 
         protected void txtTermination_Date_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+            
         }
 
         protected void txtLead_Case_Venue_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Defendant_Company";
-            db.UpdateRecord();
+            
         }
 
         protected void txtLead_Case_No_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "Lead_Case_No_Example_1100409";
-            db.UpdateRecord();
+            
         }
 
         protected void txtKTMC_Marketing_PlanDesignation_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txt.Text.ToString();
-            db.FieldName = "KTMC_Marketing_PlanDesignation";
-            db.UpdateRecord();
+           
         }
 
         protected void txtFirst_Jurisdiction_Filed_TextChanged(object sender, EventArgs e)
@@ -365,10 +411,7 @@ namespace Infinity
 
         protected void txtFirst_Jurisdiction_No_TextChanged(object sender, EventArgs e)
         {
-            TextBox txt = (TextBox)sender;
-            db.FieldValue = txtFirst_Jurisdiction_Filed.Text + " - " + txt.Text.ToString();
-            db.FieldName = "First_Jurisdiction_Filed_and_Number";
-            db.UpdateRecord();
+            
         }
 
         protected void txtSecond_Jurisdiction_Filed_TextChanged(object sender, EventArgs e)
@@ -647,6 +690,46 @@ namespace Infinity
         }
 
         protected void txtDefendant_Underwriter_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_1st_MTD_Result_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_2nd_MTD_Result_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_3rd_MTD_Result_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_1st_MTD_Judge_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_2nd_MTD_Judge_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtThe_3rd_MTD_Judge_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cboSettlementType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtDefendant_Insurer_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -93,7 +93,7 @@
     <asp:Panel ID="pnlButtons01" runat="server" Visible="true">
         <asp:Button ID="btnAdd01" type="button" runat="server" Text="Add/Create" OnClick="ButtonAdd" Visible="true" />&nbsp;
         <asp:Button ID="btnDelete01" runat="server" Text="Delete" OnClientClick="Confirm()" OnClick="ButtonDelete" Visible="false" />&nbsp;
-        <asp:Button ID="btnSave01" runat="server" Text="Save" Visible="false" />&nbsp;
+        <asp:Button ID="btnSave01" runat="server" Text="Save" OnClick="ButtonSave" Visible="false" />&nbsp;
         <asp:Button ID="btnVerify01" runat="server" Text="Verify" OnClick="ButtonVerify" Visible="false" />&nbsp;
         <asp:Button ID="btnCancel01" runat="server" Text="Cancel" OnClick="ButtonCancel" Visible="false" />&nbsp;
         <br />
@@ -508,6 +508,46 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
+                    <asp:Label ID="Label1" runat="server" Text="The&nbsp;1st&nbsp;MTD&nbsp;Result"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_1st_MTD_Result" runat="server" OnTextChanged="txtThe_1st_MTD_Result_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="Label73" runat="server" Text="&nbsp;The&nbsp;2nd&nbsp;MTD&nbsp;Result"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_2nd_MTD_Result" runat="server" OnTextChanged="txtThe_2nd_MTD_Result_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="Label74" runat="server" Text="&nbsp;The&nbsp;3rd&nbsp;MTD&nbsp;Result"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_3rd_MTD_Result" runat="server" OnTextChanged="txtThe_3rd_MTD_Result_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="Label75" runat="server" Text="The&nbsp;1st&nbsp;MTD&nbsp;Judge"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_1st_MTD_Judge" runat="server" OnTextChanged="txtThe_1st_MTD_Judge_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="Label76" runat="server" Text="&nbsp;The&nbsp;2nd&nbsp;MTD&nbsp;Judge"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_2nd_MTD_Judge" runat="server" OnTextChanged="txtThe_2nd_MTD_Judge_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="Label77" runat="server" Text="&nbsp;The&nbsp;3rd&nbsp;MTD&nbsp;Judge"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtThe_3rd_MTD_Judge" runat="server" OnTextChanged="txtThe_3rd_MTD_Judge_TextChanged"></asp:TextBox>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
                     <asp:Label ID="Label46" runat="server" Text="Date&nbsp;of&nbsp;Class&nbsp;Cert&nbsp;Decision&nbsp;"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
@@ -553,8 +593,8 @@
                 <asp:TableCell>
                     <asp:Label ID="Label52" runat="server" Text="&nbsp;Settlement&nbsp;Type&nbsp;"></asp:Label>
                 </asp:TableCell><asp:TableCell>
-                    <asp:DropDownList ID="cboStipulationType" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="cboStipulationType_SelectedIndexChanged">
+                    <asp:DropDownList ID="cboSettlementType" runat="server" AutoPostBack="true"
+                        OnSelectedIndexChanged="cboSettlementType_SelectedIndexChanged">
                         <asp:ListItem Selected="True">&nbsp;</asp:ListItem>
                         <asp:ListItem>Cash</asp:ListItem>
                         <asp:ListItem>Stock</asp:ListItem>
@@ -660,7 +700,7 @@
                     <asp:Label ID="Label65" runat="server" Text="&nbsp;Defendant&nbsp;Insurer&nbsp;"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="Defendant_Insurer" runat="server" OnTextChanged="Defendant_Insurer_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="txtDefendant_Insurer" runat="server" OnTextChanged="txtDefendant_Insurer_TextChanged"></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
@@ -719,7 +759,7 @@
         <br />
         <asp:Button ID="btnAdd02" type="button" runat="server" Text="Add/Create" OnClick="ButtonAdd" Visible="true" />&nbsp;
         <asp:Button ID="btnDelete02" runat="server" Text="Delete"  OnClientClick="Confirm()" OnClick="ButtonDelete" Visible="false" />&nbsp;
-        <asp:Button ID="btnSave02" runat="server" Text="Save" Visible="false" />&nbsp;
+        <asp:Button ID="btnSave02" runat="server" Text="Save" OnClick="ButtonSave" Visible="false" />&nbsp;
         <asp:Button ID="btnVerify02" runat="server" Text="Verify" OnClick="ButtonVerify" Visible="false" />&nbsp;
         <asp:Button ID="btnCancel02" runat="server" Text="Cancel" OnClick="ButtonCancel" Visible="false" />&nbsp;
     </asp:Panel>

@@ -1021,6 +1021,114 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.TextBox txtDate_of_Order_on_3rd_MTD;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtThe_1st_MTD_Result control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_1st_MTD_Result;
+        
+        /// <summary>
+        /// Label73 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label73;
+        
+        /// <summary>
+        /// txtThe_2nd_MTD_Result control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_2nd_MTD_Result;
+        
+        /// <summary>
+        /// Label74 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label74;
+        
+        /// <summary>
+        /// txtThe_3rd_MTD_Result control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_3rd_MTD_Result;
+        
+        /// <summary>
+        /// Label75 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label75;
+        
+        /// <summary>
+        /// txtThe_1st_MTD_Judge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_1st_MTD_Judge;
+        
+        /// <summary>
+        /// Label76 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label76;
+        
+        /// <summary>
+        /// txtThe_2nd_MTD_Judge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_2nd_MTD_Judge;
+        
+        /// <summary>
+        /// Label77 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label77;
+        
+        /// <summary>
+        /// txtThe_3rd_MTD_Judge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThe_3rd_MTD_Judge;
+        
+        /// <summary>
         /// Label46 control.
         /// </summary>
         /// <remarks>
@@ -1138,13 +1246,13 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Label Label52;
         
         /// <summary>
-        /// cboStipulationType control.
+        /// cboSettlementType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboStipulationType;
+        protected global::System.Web.UI.WebControls.DropDownList cboSettlementType;
         
         /// <summary>
         /// Label53 control.
@@ -1381,13 +1489,13 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Label Label65;
         
         /// <summary>
-        /// Defendant_Insurer control.
+        /// txtDefendant_Insurer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Defendant_Insurer;
+        protected global::System.Web.UI.WebControls.TextBox txtDefendant_Insurer;
         
         /// <summary>
         /// Table5 control.
