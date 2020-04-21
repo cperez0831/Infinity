@@ -62,13 +62,15 @@ namespace Infinity
 
         protected void SelectRow(bool SW = true)
         {   btnAdd01.Visible = !SW;
-            btnEdit01.Visible = SW;
             btnDelete01.Visible = SW;
-            btnDelete01A.Visible = !SW;
             btnSave01.Visible = SW;
             btnCancel01.Visible = SW;
             btnVerify01.Visible = !SW;
             MirrorButtons();
+            pnlData.Visible = !SW;
+            pnlMain.Visible = SW;
+            txtIDInfinity.Text = strRecNo;
+            PopulateDataEntry();
         }
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -162,20 +164,17 @@ namespace Infinity
         protected void MirrorButtons()
         {
             btnAdd02.Visible = btnAdd01.Visible;
-            btnEdit02.Visible = btnEdit01.Visible;
             btnDelete02.Visible = btnDelete01.Visible;
-            btnDelete02A.Visible = btnDelete01A.Visible;
             btnSave02.Visible = btnSave01.Visible;
             btnVerify02.Visible = btnVerify01.Visible;
             btnCancel02.Visible = btnCancel01.Visible;
         }
         protected void ButtonAdd(object sender, EventArgs e)
         {
+            
             SW = true;
             btnAdd01.Visible = !SW;
-            btnEdit01.Visible = !SW;
             btnDelete01.Visible = !SW;
-            btnDelete01A.Visible = !SW;
             btnSave01.Visible = SW;
             btnVerify01.Visible = !SW;
             btnCancel01.Visible = SW;
@@ -200,41 +199,8 @@ namespace Infinity
                 txtIDInfinity.Text = strRecNo;
             }
         }
-        protected void ButtonEdit(object sender, EventArgs e)
-        {
-            SW = true;
-            btnAdd01.Visible = !SW;
-            btnEdit01.Visible = !SW;
-            btnDelete01.Visible = !SW;
-            btnDelete01A.Visible = !SW;
-            btnSave01.Visible = SW;
-            btnVerify01.Visible = SW;
-            btnCancel01.Visible = SW;
-            MirrorButtons();
-            pnlData.Visible = !SW;
-            pnlMain.Visible = SW;
-
-            txtIDInfinity.Text = strRecNo;
-            PopulateDataEntry();
-        }
+        
         protected void ButtonDelete(object sender, EventArgs e)
-        {
-            SW = true;
-            btnAdd01.Visible = !SW;
-            btnEdit01.Visible = !SW;
-            btnDelete01.Visible = !SW;
-            btnDelete01A.Visible = SW;
-            btnSave01.Visible = !SW;
-            btnVerify01.Visible = !SW;
-            btnCancel01.Visible = SW;
-            MirrorButtons();
-            pnlData.Visible = !SW;
-            pnlMain.Visible = SW;
-
-            txtIDInfinity.Text = strRecNo;
-            PopulateDataEntry();
-        }
-        protected void ButtonDeleteA(object sender, EventArgs e)
         {
             string confirmValue = Request.Form["confirm_value"];
             if (confirmValue == "Yes")
@@ -248,6 +214,7 @@ namespace Infinity
                 // do nothing
             }
         }
+        
         protected void MarkRecordForDelete()
         {
             DBUtil dbc = new DBUtil();

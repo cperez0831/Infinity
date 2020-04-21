@@ -38,17 +38,18 @@ namespace Infinity
                 message = "User " + usr + " not allowed." + "\\nPlease check with your administrator. ";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
                 return;
-            } 
+            }
 
-            if (!AuthenticateUser())
-            {
-                message = "Invalid username or password." + "\\nPlease enter correct useername and password. ";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
-            }
-            else
-            {
-                Response.Redirect("main.aspx");
-            }
+            Response.Redirect("main.aspx");
+            //if (!AuthenticateUser())
+            //{
+            //    message = "Invalid username or password." + "\\nPlease enter correct useername and password. ";
+            //    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+            //}
+            //else
+            //{
+            //    Response.Redirect("main.aspx");
+            //}
         }
 
         private bool AuthenticateUser()

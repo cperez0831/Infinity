@@ -49,15 +49,6 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Button btnAdd01;
         
         /// <summary>
-        /// btnEdit01 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit01;
-        
-        /// <summary>
         /// btnDelete01 control.
         /// </summary>
         /// <remarks>
@@ -65,15 +56,6 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete01;
-        
-        /// <summary>
-        /// btnDelete01A control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete01A;
         
         /// <summary>
         /// btnSave01 control.
@@ -1561,15 +1543,6 @@ namespace Infinity {
         protected global::System.Web.UI.WebControls.Button btnAdd02;
         
         /// <summary>
-        /// btnEdit02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit02;
-        
-        /// <summary>
         /// btnDelete02 control.
         /// </summary>
         /// <remarks>
@@ -1577,15 +1550,6 @@ namespace Infinity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete02;
-        
-        /// <summary>
-        /// btnDelete02A control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete02A;
         
         /// <summary>
         /// btnSave02 control.
