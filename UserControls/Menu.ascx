@@ -21,6 +21,7 @@
         	<td style="width:420px; font-family: Tahoma; color:#3E5264; text-align:right; font-weight:bold; font-size:16px; background-color: #F9FFFF;">Infinity Application<br />&nbsp;</td>
         	</tr>
         	</table>
+<!--
         	<table width="840px" cellspacing="1" cellpadding="2" align="center" >
 
 			<tr style="VERTICAL-ALIGN: middle; height:22px;">
@@ -39,6 +40,7 @@
                 <td id="tdCampaign" runat="server" style="FONT-WEIGHT:bold; FONT-SIZE:9pt; WIDTH:140px; COLOR:white; FONT-FAMILY:'Microsoft Sans Serif'; TEXT-ALIGN:center; vertical-align: middle; background-color:#3e5264;"
 					><asp:HyperLink ID="CampaignHyperLink"  runat="server" CssClass="menu" NavigateUrl="~/Campaign.aspx" ForeColor="White" Text="Campaign / Cases" Width="100%"></asp:HyperLink></td>
 				-->
+<!--
 				<td id="tdContact" runat="server" style="FONT-WEIGHT:bold; FONT-SIZE:9pt; WIDTH:140px; COLOR:white; FONT-FAMILY:'Microsoft Sans Serif'; TEXT-ALIGN:center; vertical-align: middle; background-color:#3e5264;"
 					><asp:HyperLink ID="ContactHyperLink"  runat="server" CssClass="menu" NavigateUrl="~/Contact.aspx" ForeColor="White" Text="Contact" Width="100%"></asp:HyperLink></td>
 				<td id="tdAbout" runat="server" style="FONT-WEIGHT:bold; FONT-SIZE:9pt; WIDTH:140px; COLOR:white; FONT-FAMILY:'Microsoft Sans Serif'; TEXT-ALIGN:center; vertical-align: middle; background-color:#3e5264;"
@@ -46,5 +48,7 @@
 				<td id="tdAdmin" runat="server" style="FONT-WEIGHT:bold;FONT-SIZE:9pt;WIDTH:140px;COLOR:white;FONT-FAMILY:'Microsoft Sans Serif';TEXT-ALIGN:center; vertical-align: middle; background-color:#3e5264;"
 					><asp:HyperLink ID="AdminHyperLink" runat="server" CssClass="menu" ForeColor="White" NavigateUrl="~/Admin/Brokerage.aspx" Text="Admin" Width="100%" ></asp:HyperLink></td>
 			</tr>
+    
             <tr><td>&nbsp;</td></tr>
 		</table>
+-->
